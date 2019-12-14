@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>TodoApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
-</html>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>TODO App</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': eload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+    <body>
+      <%= render "layouts/header" %>
+      <%= render "layouts/flash" %>
+      <div id="modalArea"></div>
+      <main>
+        <div class="container-fruid h-100 p-2 d-flex flex-column">
+          <%= yield %>
+        </div>
+      </main>
+      <%= render "layouts/footer" %>
+    </body>
+  </html>
