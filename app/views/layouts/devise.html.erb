@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render "layouts/header" %>
+    <%= render "layouts/flash" %>
+    <main class="bg-home d-flex align-items-center w-100 h-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-11 col-lg-5 jumbotron mx-auto mt-4" style="box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2)">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%= render "layouts/footer" %>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+input[type="submit"][value="Cancel my account"] {
+  @extend .btn !optional;
+  @extend .btn-danger !optional;
+}
