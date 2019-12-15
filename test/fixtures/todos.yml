@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  goal: one
+  position: 1
+  done: false
+
+two:
+  content: MyString
+  goal: two
+  position: 1
+  done: false
