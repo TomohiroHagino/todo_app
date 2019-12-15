@@ -1,54 +1,57 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :edit, :update, :destroy]
-
-  # GET /todos
-  def index
-    @todos = Todo.all
-  end
-
-  # GET /todos/1
-  def show
-  end
+  #Devise でログインしていないとこのコントローラのアクションを呼び出せないようにします。
+  before_action :authenticate_user!
+  before_action :set_goal
+  before_action :set_todo, only: [:show, :edit, :update, :destroy, :sort]
 
   # GET /todos/new
   def new
-    @todo = Todo.new
+    #@goalに紐付いたtodosをnewしています
+    @todo = @goal.todos.new
   end
 
   # GET /todos/1/edit
   def edit
   end
 
+  def sort
+  end
+
   # POST /todos
   def create
-    @todo = Todo.new(todo_params)
+    @todo = @goal.todos.new(todo_params)
 
     if @todo.save
-      redirect_to @todo, notice: 'Todo was successfully created.'
+      @status = true
     else
-      render :new
+      @status = false
     end
   end
 
   # PATCH/PUT /todos/1
   def update
+    # todo_paramsはこのクラスのprivate以下で定義しています。 
     if @todo.update(todo_params)
-      redirect_to @todo, notice: 'Todo was successfully updated.'
+      @status = true
     else
-      render :edit
+      @status = false
     end
   end
 
   # DELETE /todos/1
   def destroy
     @todo.destroy
-    redirect_to todos_url, notice: 'Todo was successfully destroyed.'
   end
 
   private
+
+  def set_goal
+    @goal = current_user.goals.find_by(id: params[:goal_id])
+    redirect_to(goals_url, alert: "ERROR!!") if @goal.blank?
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_todo
-      @todo = Todo.find(params[:id])
+      @todo = @goal.todos.find_by(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -1,4 +1,5 @@
 class GoalsController < ApplicationController
+  #Devise でログインしていないとこのコントローラのアクションを呼び出せないようにします。
   before_action :authenticate_user!
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
 
