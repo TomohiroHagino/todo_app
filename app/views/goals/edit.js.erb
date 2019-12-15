@@ -1,0 +1,13 @@
+// モーダル追加
+$("#modalArea").html(
+  "<%= j(render 'form', goal: @goal) %>"
+);
+
+// フォームにフォーカス
+//modalAreaのなかから modalを探してきて、
+$("#modalArea").find(".modal").on('shown.bs.modal', () => {
+  $("#modalArea").find("form input[type=text]")[0].focus();
+})
+
+// モーダル表示
+$("#modalArea").find(".modal").modal("show");

@@ -1,0 +1,8 @@
+// true すでに一度フォームが表示されている場合 : false まだフォームが表示されてない場合
+if ($('[data-model_name="goal"]').filter('[data-id="<%= @goal.id %>"]').find('form[name="todoForm"]').length) {
+    $('[data-model_name="goal"]').filter('[data-id="<%= @goal.id %>"]').find('form[name="todoForm"]').eq(0).toggle()
+    $('[data-model_name="goal"]').filter('[data-id="<%= @goal.id %>"]').find('form [name="todo[content]"]').eq(0).focus();
+} else {
+    $('[data-model_name="goal"]').filter('[data-id="<%= @goal.id %>"]').find('.goal-header').after("<%= j(render 'form', goal: @goal, todo: @todo) %>")
+    $('[data-model_name="goal"]').filter('[data-id="<%= @goal.id %>"]').find('form [name="todo[content]"]').eq(0).focus();
+}

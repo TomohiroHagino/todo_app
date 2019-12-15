@@ -1,0 +1,14 @@
+// modalを閉じる処理
+$("#goalModal").modal("hide");
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+
+
+// Rails @status => true 画面の書き換え : false モーダルを再度表示
+// <% if @status %>
+$("#goalsIndex").append("<%= j(render @goal) %>");
+
+// <% else %>
+$("#modalArea").html("<%= j(render 'goals/form', goal: @goal) %>")
+$("#modalArea").find(".modal").modal('show')
+// <% end %>

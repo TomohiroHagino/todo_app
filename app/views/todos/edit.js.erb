@@ -1,0 +1,12 @@
+// モーダル追加
+$("#modalArea").html(
+  "<%= j(render 'modal_form', todo: @todo, goal: @goal) %>"
+);
+
+// フォームにフォーカス
+$("#modalArea").find(".modal").on('shown.bs.modal', () => {
+  $("#modalArea").find('form [name="todo[content]"]').eq(0).focus();
+})
+
+// モーダル表示
+$("#modalArea").find(".modal").modal("show");
