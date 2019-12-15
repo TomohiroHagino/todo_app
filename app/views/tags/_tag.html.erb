@@ -1,0 +1,6 @@
+<div data-model_name="<%= Tag.model_name.singular %>" data-id="<%= tag.id %>">
+  <%= link_to edit_tag_path(tag), remote: true do %><div class="btn btn-secondary mr-1 mb-2"><%= tag.name %></div><% end %>
+  <%= link_to tag_path(tag), method: :delete, remote: true, data: { confirm: "Deleting tag [#{tag.name}]. Are you sure?" } do %>
+    <i class="fas fa-times text-danger"></i>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+// 値をクリアしてfocusする
+$('.field input#tag_name').val("")
+$('.field input#tag_name').focus();
+
+// Rails @status => true 画面の書き換え : false モーダルを再度表示
+// <% if @status %>
+$("#modalArea")
+  .find("#tagIndex")
+  .html('<%= j(render partial: "tags/tag", collection: current_user.tags.select(&:persisted?), as: :tag) %>')
+
+// <% else %>
+
+// モーダルを閉じる処理
+<%= render 'remove_modal' %>
+
+// モーダルの書き換え
+$("#modalArea").html("<%= j(render 'tags/form', tag: @tag) %>")
+
+// モーダル表示
+<%= render 'show_modal' %>
+// <% end %>

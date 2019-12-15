@@ -1,7 +1,10 @@
 <div class="goal-title-area px-3">
   <h1>Goals</h1>
-  <%= link_to new_goal_path, title: "New", class: "btn p-0 text-dark", remote: true do %>
+  <%= link_to new_goal_path, class: "btn p-0 text-dark pr-5", remote: true do %>
     <i class="fas fa-plus align-middle pr-1"></i><span class="align-middle">Create A New Goal</span>
+  <% end %>
+  <%= link_to new_tag_path, class: "btn p-0 text-dark", remote: true do %>
+    <i class="fas fa-plus align-middle pr-1"></i><span class="align-middle">Manage Tag</span>
   <% end %>
 </div>
 <div class="pt-3 p-1 text-nowrap goal-index-area" id="goalsIndex">

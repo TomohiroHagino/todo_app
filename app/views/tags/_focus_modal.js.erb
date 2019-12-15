@@ -1,0 +1,4 @@
+// フォームにフォーカス
+$("#modalArea").find(".modal").on('shown.bs.modal', () => {
+  $("#modalArea").find("form input[type=text]").focus();
+})

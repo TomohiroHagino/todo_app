@@ -1,0 +1,29 @@
+// モーダルを閉じる処理
+<%= render 'remove_modal' %>
+
+// Rails @status => true 画面の書き換え : false モーダルを再度表示
+
+// <% if @status %>
+// すでに表示されているgoalsを書き換え
+$('#goalsIndex').html('<%= j(render partial: "goals/goal", collection: current_user.goals, as: :goal) %>')
+
+// new用のモーダルを作成
+$("#modalArea").html("<%= j(render 'form', tag: Tag.new) %>")
+
+// フォームにフォーカス
+<%= render 'focus_modal' %>
+
+// モーダルの表示
+<%= render 'show_modal' %>
+
+
+// <% else %>
+// edit用のモーダルを書き換え
+$("#modalArea").html("<%= j(render 'edit_form', tag: @tag) %>")
+
+// フォームにフォーカス
+<%= render 'focus_modal' %>
+
+// モーダルの表示
+<%= render 'show_modal' %>
+// <% end %>

@@ -55,7 +55,8 @@ class TodosController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
+    # tag_idsの部分は、tag_idを複数保持するという意味です。配列で持ちます。
     def todo_params
-      params.require(:todo).permit(:content, :goal_id, :position, :done)
+      params.require(:todo).permit(:content, :goal_id, :position, :done, tag_ids: [])
     end
-end
+  end

@@ -1,0 +1,5 @@
+// モーダルの書き換え
+$('[data-model_name="tag"]').filter('[data-id="<%= @tag.id %>"]').remove();
+
+// すでに表示されているgoalsを書き換え
+$('#goalsIndex').html('<%= j(render partial: "goals/goal", collection: current_user.goals, as: :goal) %>')

@@ -23,10 +23,11 @@
             <%= form.label :name %>
             <%= form.text_field :name %>
           </div>
-          <%= render 'index' %>
         </div>
         <div class="modal-footer actions">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= link_to new_tag_path, remote: true do %>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <% end %>
           <%= form.submit %>
         </div>
       <% end %>

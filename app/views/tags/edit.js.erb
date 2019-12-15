@@ -1,0 +1,13 @@
+// モーダルを閉じる処理
+<%= render 'remove_modal' %>
+
+// モーダル追加
+$("#modalArea").html(
+  "<%= j(render 'edit_form', tag: @tag) %>"
+);
+
+// フォームにフォーカス
+<%= render 'focus_modal' %>
+
+// モーダル表示
+<%= render 'show_modal' %>
