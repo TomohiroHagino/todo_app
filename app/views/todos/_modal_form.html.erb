@@ -1,27 +1,27 @@
 <div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <%= form_with(model: goal, remote: true) do |form| %>
+      <%= form_with(model: todo, url: [goal, todo], remote: true, class: "") do |form| %>
         <div class="modal-header">
-          <h5 class="modal-title" id="goalModal"><%= "#{params[:action].camelize} #{goal.model_name.human}" %></h5>
+          <h5 class="modal-title" id="goalModal"><%= "#{params[:action].camelize} #{todo.model_name.human}" %></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <% if goal.errors.any? %>
+          <% if todo.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
+              <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
               <ul>
-                <% goal.errors.full_messages.each do |message| %>
+                <% todo.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
                 <% end %>
               </ul>
             </div>
           <% end %>
           <div class="field">
-            <%= form.label :title %>
-            <%= form.text_field :title %>
+            <%= form.label :content %>
+            <%= form.text_area :content, rows: 5 %>
           </div>
         </div>
         <div class="modal-footer actions">

@@ -1,0 +1,39 @@
+<div class="card mt-2 todo-card <%=" text-muted bg-light" if todo.done %>"
+  data-model_name="<%= Todo.model_name.singular %>"
+  data-goal_id="<%= todo.goal.id %>"
+  data-id="<%= todo.id %>">
+  <div class="card-body pr-1">
+    <div class="card-text pr-4">
+      <%= todo.done ? tag.del(){simple_format todo.content} : (simple_format todo.content) %>
+    </div>
+    <div class="btn-group position-absolute" style="top: 10px; right: 4px">
+      <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right text-middle">
+        <%= form_with(model: todo, url: [todo.goal, todo], remote: true) do |form| %>
+          <% if todo.done %>
+            <%= form.hidden_field :done, value: false, readonly: true %>
+            <%= form.submit "未完了", class: "dropdown-item text-success" %>
+          <% else %>
+            <%= form.hidden_field :done, value: true, readonly: true %>
+            <%= form.submit "完了！", class: "dropdown-item text-success" %>
+          <% end %>
+        <% end %>
+        <div class="dropdown-divider"></div>
+        <%= link_to "並びかえ", sort_goal_todo_path(todo.goal, todo), class: "dropdown-item", remote: true %>
+        <%= link_to "編集", edit_goal_todo_path(todo.goal, todo), class: "dropdown-item", remote: true %>
+        <%= link_to "削除",
+            goal_todo_path(todo.goal, todo),
+            method: :delete,
+            class: "dropdown-item text-danger",
+            remote: true, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    <div class="card-text">
+      <small class="text-muted">
+        <%= todo.created_at.strftime('%Y/%m/%d') %>
+      </small>
+    </div>
+  </div>
+</div>

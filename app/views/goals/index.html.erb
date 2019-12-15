@@ -1,29 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Goals</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= goal.title %></td>
-        <td><%= goal.user %></td>
-        <td><%= link_to 'Show', goal %></td>
-        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Goal', new_goal_path %>
+<div class="goal-title-area px-3">
+  <h1>Goals</h1>
+  <%= link_to new_goal_path, title: "New", class: "btn p-0 text-dark", remote: true do %>
+    <i class="fas fa-plus align-middle pr-1"></i><span class="align-middle">Create A New Goal</span>
+  <% end %>
+</div>
+<div class="pt-3 p-1 text-nowrap goal-index-area" id="goalsIndex">
+  <%= render @goals %>
+</div>

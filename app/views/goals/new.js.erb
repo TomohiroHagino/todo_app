@@ -1,0 +1,8 @@
+$("#modalArea").html("<%= j(render 'form', goal: @goal) %>")
+
+// フォームにフォーカス
+$("#modalArea").find(".modal").on('shown.bs.modal', () => {
+    $("#modalArea").find("form input[type=text]")[0].focus();
+})
+
+$("#modalArea").find(".modal").modal('show')

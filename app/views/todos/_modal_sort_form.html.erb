@@ -1,0 +1,49 @@
+<div class="modal fade" id="goalModal" tabindex="-1" role="dialog" aria-labelledby="goalModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_with(model: todo, url: [goal, todo], remote: true, class: "") do |form| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="goalModal">並びかえ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <% if todo.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+              <ul>
+                <% todo.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="card my-2">
+            <div class="card-body">
+              <div class="card-text">
+                <%= todo.done ? tag.del(){simple_format todo.content} : (simple_format todo.content) %>
+              </div>
+              <div class="card-text">
+                <small class="text-muted">
+                  <%= l(todo.created_at, format: :short) if todo.created_at.present? %>
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <%= form.label :position, class: "d-none"  %>
+            <%= form.select  :position,
+              (1..goal.todos.length).map {|i| [i, i] },
+              { selected: goal.todos.index(todo) + 1 },
+              class: "d-inline w-auto" %>番目に移動
+          </div>
+          <div class="modal-footer actions">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= form.submit %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
