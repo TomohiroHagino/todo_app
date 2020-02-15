@@ -43,13 +43,12 @@ class TagsController < ApplicationController
   # DELETE /tags/1
   def destroy
     @tag.destroy
-    redirect_to tags_url, notice: 'Tag was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tag
-      @@tag = current_user.tags.find(params[:id])
+      @tag = current_user.tags.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

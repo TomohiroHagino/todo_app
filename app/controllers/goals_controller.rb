@@ -35,8 +35,10 @@ class GoalsController < ApplicationController
   # PATCH/PUT /goals/1
   def update
     if @goal.update(goal_params)
+      @status = true
       redirect_to @goal, notice: 'Goal was successfully updated.'
     else
+      @status = false
       render :edit
     end
   end
